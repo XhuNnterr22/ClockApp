@@ -1,0 +1,509 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    text-decoration: none;
+    outline: none;
+}
+
+// colors
+
+// =====lightMode===========
+:root{
+--purpal:#b5179e;
+--boxShadow:rgba(0,0,0,0.5);
+--black:#000;
+--blue:#4cc9f0;
+--bodyColor:#fff;
+--LightBlack:#3A3A39;
+--LightBlack2:#545454;
+
+}
+
+// ===================
+
+
+// ===========blackMode=========
+.darkmode{
+    --purpal:#f72585;
+    --LightBlack:#f72585;
+    --LightBlack2:#3f37c9;
+    --boxShadow:rgba(255,255,255,0.4);
+    --black:#fff;
+    --blue:#3f37c9;
+    --bodyColor:#202124;
+    transition: .3s ease-in;
+
+}
+// ==============
+
+::selection{
+    color: var(--bodyColor);
+    background: var(--black);
+}
+
+// -----// 
+// ==========Gobal Elemets==============
+
+//font
+$font1:'Baloo Bhaijaan 2', cursive;
+$font2:'Orbitron', sans-serif;
+// 
+
+// buttons
+.btn{
+    padding: 1.4rem 2rem;
+    border: .2rem solid var(--LightBlack2);
+    background: transparent;
+    color: var(--purpal);
+    font-family: $font1;
+    font-weight: 700;
+    font-size: 1.8rem;
+    border-radius: 6rem;
+    cursor: pointer;
+    transition: .4s ease-out;
+
+    &:hover{
+        background: var(--LightBlack2);
+        color: var(--bodyColor);
+    }
+}
+
+.heading{
+    font-family: $font1;
+    color: var(--LightBlack);
+    font-size: 5rem;
+    font-weight: bolder;
+}
+// 
+#StopWatchMassge,
+#AlarmMassage,
+#TimerMassage{
+    width: 90%;
+    font-size: 2.5rem;
+    font-family: $font1;
+    text-align: center;
+    position: relative;
+    top: -13%;
+    border: none;
+    border-radius: 0 0 6rem 6rem;
+    pointer-events: none;
+    transition: .2s ease-out;
+    color: var(--bodyColor);
+    background-color: var(--LightBlack2);
+    transform: scaleX(0);
+    transform-origin: left;
+    word-spacing: .4rem;
+
+    &.show{
+        transform: scaleX(1);
+        pointer-events: visible;
+        padding: 1rem;
+    }
+}
+
+#TimerMassage{
+    top: -5%;
+}
+
+
+// =================
+html{
+    scroll-behavior: smooth;
+    font-size: 62.5%;
+}
+body{
+    overflow-x: hidden;
+    background: var(--bodyColor);
+}
+.loader{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: .4s ease;
+    pointer-events: none;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .headerSection{
+        width: 100%;
+        user-select: none;
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        padding: 1rem 2% 0;
+
+        .boxWapper{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            width: 100%;
+            overflow: hidden;
+            flex-wrap: wrap;
+            position: relative;
+            top: -2rem;
+        
+        .navBar{
+            flex: 1 1 80rem;
+            // width: 50rem;
+            // height: 10rem;
+            padding: 1.4rem;
+            border: none;
+            border-radius: 0 0 6rem 6rem;
+            background-color:var(--LightBlack);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+            span{
+                font-family: $font1;
+                font-weight: 700;
+                color: var(--bodyColor);
+                font-size: 2.4rem;
+                cursor: pointer;
+                padding: 0rem 1.7rem;
+                cursor: pointer;
+                position: relative;
+                margin: 0 1rem;
+                transition: 0.3s ease-in-out;
+
+                
+                &:hover::before{
+                    transform-origin: left;
+                    transform: scaleX(1);
+                }
+                &::before{
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: .3rem;
+                    bottom: 0;
+                    left: 0;
+                    background: var(--blue);
+                    transform-origin: left;
+                    transform: scaleX(0);
+                    transition: 0.3s ease-in-out;
+                }
+
+            }
+            a{
+                display: flex;
+            .fa-moon{
+                width: 3rem;
+                height: 3rem;
+                background: var(--bodyColor);
+                color: var(--black);
+                font-size: 2rem;
+                cursor: pointer;
+                text-align: center;
+                border: none;
+                border-radius: 50%;
+                line-height: 3rem;
+                display: block;
+            }
+            .fa-sun{
+                width: 3rem;
+                height: 3rem;
+                background: var(--black);
+                color: var(--bodyColor);
+                font-size: 2rem;
+                cursor: pointer;
+                text-align: center;
+                border: none;
+                border-radius: 50%;
+                line-height: 3rem;
+                display: none;
+            }
+        }
+            
+        }
+        .currentTime{
+            flex: .8 1 7rem;
+            font-family: $font2;
+            color: var(--bodyColor);
+            background: var(--LightBlack2);
+            padding: 1.3rem 3rem;
+            border: none;
+            text-align: center;
+            border-radius: 1rem;
+            margin-top: .5rem;
+            font-size: 2.2rem;
+        }
+    }
+    }
+    .ClockSections{
+        width: 80%;
+        height: 70vh;
+        border: none;
+        border-radius: 2rem;
+        box-shadow: 0rem .5rem 1rem var(--boxShadow);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+
+        .stopWatchSection{
+            width: 100%;
+            height: 100%;
+            border-radius: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 2rem;
+            transition: .4s ease-in;
+            transform-origin: left;
+            
+            .StopWatchTimer{
+                display: flex;
+                width: 92%;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+                background: var(--blue);
+                padding: 2rem 3%;
+                color: var(--bodyColor);
+                font-size: 2.5rem;
+                border-radius: 1.2rem;
+                span{
+                    color: var(--bodyColor);
+                    font-size: 2.5rem;
+                    font-family: $font2;
+                    border: none;
+                }
+            }
+            .boxWapper{
+                width: 80%;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2rem;
+                align-items: center;
+
+                .btn{
+                    flex: 1 1 20rem;
+                }
+                #StopWatchresetbtn{
+                    opacity: .4;
+                    pointer-events:none;
+                    transition: .3s ease;
+                }
+            }
+
+
+        }
+        .AlarmSection{
+            width: 0;
+            height: 0;
+            opacity: 0;
+            visibility:hidden;
+            border-radius: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 2rem;
+            transition: .4s ease-in;
+            transform-origin: left;
+            transform: translateX(-100rem);
+            transform-origin: right;
+            border-radius: 2rem;
+            transition: .4s ease-in;
+
+            .AlramTimer{
+                width: 92%;
+                background: var(--blue);
+                padding: 2rem 3%;
+                color: var(--bodyColor);
+                font-size: 2.5rem;
+                border-radius: 1.2rem;
+                font-family: $font2;
+                border: none;
+                
+            }
+            .boxWapper{
+                width: 80%;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2rem;
+                align-items: center;
+
+                .btn{
+                    flex: 1 1 30rem;
+                }
+            }
+        }
+
+
+
+        .TimerSection{
+            width: 0;
+            height: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-100rem);
+            transform-origin: right;
+            border-radius: 2rem;
+            transition: .4s ease-in;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 2rem;
+
+            .top{
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+                .decbtn,
+                .incbtn{
+                    width: 5rem;
+                    height: 5rem;
+                    text-align: center;
+                    border: .2rem solid var(--blue);
+                    color: var(--blue);
+                    font-size: 3rem;
+                    font-family: $font2;
+                    background: transparent;
+                    transition: .4s ease;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    
+                    &:hover{
+                        background: var(--blue);
+                        color: var(--bodyColor);
+                    }
+                }
+                .show{
+                    color: var(--purpal);
+                    font-family: $font2;
+                    font-size: 3rem;
+                }
+                
+            }
+            .center{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 80%;
+                background: var(--blue);
+                font-size: 3rem;
+                color: var(--bodyColor);
+                font-family: $font2;
+                border: none;
+                border-radius: 1.5rem;
+                padding: 2rem 3%;
+            }
+            .bottom{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 80%;
+                .boxWapper{
+                    width: 80%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 2rem;
+                    align-items: center;
+    
+                    .btn{
+                        flex: 1 1 20rem;
+                    }
+                }   
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ==================All Media Q==============
+@media(max-width:1300px){
+    html{
+        font-size: 58%;
+    }
+}
+
+@media(max-width:988px){
+    html{
+        font-size: 54%;
+    }
+}
+
+@media(max-width:768px){
+    html{
+        font-size: 49.5%;
+    }
+}
+
+@media(max-width:500px){
+    html{
+        font-size: 45%;
+    }
+}
+
+
+@media(max-width:440px){
+    html{
+        font-size: 44%;
+    }
+    .navBar{
+        span{
+            padding: 1rem;
+            margin: 0 .5rem;
+        }
+    }
+}
+
+
+@media(max-width:320px){
+    html{
+        font-size: 42%;
+    }
+    .navBar{
+        span{
+            padding: .7rem;
+            margin: 0 .3rem;
+        }
+    }
+}
+// ====================

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Myy-Clock</title>
+    <link rel="stylesheet" href="sass/style.css">
+</head>
+<body>
+    <div class="loader" id="loader">
+        <img src="images/loader.gif">
+    </div>
+    <div class="container">
+        <header class="headerSection">
+            <!-- <a href="" class="logo"><img src="images/Logo.svg"></a> -->
+            <div class="boxWapper">
+            <nav class="navBar">
+                <span id="stopwatch">StopWatch</span>
+                <span id="alarm">Alarm</span>
+                <span id="timer">Timer</span>
+                <a><i class="fas fa-moon" id="darkMode"></i><i class="fas fa-sun" id="LightMode"></i></a>
+            </nav>
+            <div class="currentTime" id="currentTime">Current Time--></div>
+        </div>
+        </header>
+
+        <section class="ClockSections">
+            <div class="stopWatchSection" id="stopWatchSection">
+                <span id="StopWatchMassge">Error</span>
+                <h1 class="heading">
+                    StopWatch
+                </h1>
+                <div class="StopWatchTimer">
+                    <span class="hour" id="Stopwatchhour">00</span>:
+                    <span class="mintinus" id="Stopwatchmintinus">00</span>:
+                    <span class="seconds" id="Stopwatchseconds">00</span>:
+                    <span class="milliseconds" id="Stopwatchmillisecons">00</span>
+                </div>
+                <div class="boxWapper">
+                    <button class="btn" id="StopWatchstartbtn">start</button>
+                    <button class="btn" id="StopWatchresetbtn">reset</button>
+                    <button class="btn" id="StopWatchstopbtn">stop</button>
+                </div>
+
+            </div>
+            <div class="AlarmSection" id="alarmSection">
+                <span id="AlarmMassage">Error</span>
+                <h1 class="heading">
+                    Alarm
+                </h1>
+                <input type="datetime-local"  class="AlramTimer" onchange="GetTheValue(this.value)" id="AlrmTime">
+                <div class="boxWapper">
+                    <button class="btn" id="Alramstartbtn">start</button>
+                    <button class="btn" id="Alramstopbtn">stop</button>
+                </div>
+            </div>  
+            
+            <div class="TimerSection" id="TimerSection">
+                <span id="TimerMassage">Error</span>
+                <h1 class="heading">CountDown Timer</h1>
+                <div class="top">
+                    <button class="decbtn" id="decrese">-</button>
+                    <span class="show" id="showmins">0</span>
+                    <button class="incbtn" id="increse">+</button>
+                </div>
+                <div class="center" id="countdowntime">00</div>
+                <div class="bottom">
+                    <div class="boxWapper">
+                    <button class="btn" id="Timerstartbtn">start</button>
+                    <button class="btn" id="Timerstopbtn">stop</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+<script src="javascript/main.js"></script>
+</body>
+</html>

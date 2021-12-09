@@ -1,0 +1,613 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-transform: capitalize;
+  text-decoration: none;
+  outline: none;
+}
+
+:root {
+  --purpal:#b5179e;
+  --boxShadow:rgba(0,0,0,0.5);
+  --black:#000;
+  --blue:#4cc9f0;
+  --bodyColor:#fff;
+  --LightBlack:#3A3A39;
+  --LightBlack2:#545454;
+}
+
+.darkmode {
+  --purpal:#f72585;
+  --LightBlack:#f72585;
+  --LightBlack2:#3f37c9;
+  --boxShadow:rgba(255,255,255,0.4);
+  --black:#fff;
+  --blue:#3f37c9;
+  --bodyColor:#202124;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+
+::-moz-selection {
+  color: var(--bodyColor);
+  background: var(--black);
+}
+
+::selection {
+  color: var(--bodyColor);
+  background: var(--black);
+}
+
+.btn {
+  padding: 1.4rem 2rem;
+  border: 0.2rem solid var(--LightBlack2);
+  background: transparent;
+  color: var(--purpal);
+  font-family: "Baloo Bhaijaan 2", cursive;
+  font-weight: 700;
+  font-size: 1.8rem;
+  border-radius: 6rem;
+  cursor: pointer;
+  -webkit-transition: .4s ease-out;
+  transition: .4s ease-out;
+}
+
+.btn:hover {
+  background: var(--LightBlack2);
+  color: var(--bodyColor);
+}
+
+.heading {
+  font-family: "Baloo Bhaijaan 2", cursive;
+  color: var(--LightBlack);
+  font-size: 5rem;
+  font-weight: bolder;
+}
+
+#StopWatchMassge,
+#AlarmMassage,
+#TimerMassage {
+  width: 90%;
+  font-size: 2.5rem;
+  font-family: "Baloo Bhaijaan 2", cursive;
+  text-align: center;
+  position: relative;
+  top: -13%;
+  border: none;
+  border-radius: 0 0 6rem 6rem;
+  pointer-events: none;
+  -webkit-transition: .2s ease-out;
+  transition: .2s ease-out;
+  color: var(--bodyColor);
+  background-color: var(--LightBlack2);
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  word-spacing: .4rem;
+}
+
+#StopWatchMassge.show,
+#AlarmMassage.show,
+#TimerMassage.show {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  pointer-events: visible;
+  padding: 1rem;
+}
+
+#TimerMassage {
+  top: -5%;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+}
+
+body {
+  overflow-x: hidden;
+  background: var(--bodyColor);
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 1000;
+  -webkit-transition: .4s ease;
+  transition: .4s ease;
+  pointer-events: none;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.container .headerSection {
+  width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem 2% 0;
+}
+
+.container .headerSection .boxWapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  overflow: hidden;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: relative;
+  top: -2rem;
+}
+
+.container .headerSection .boxWapper .navBar {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 80rem;
+          flex: 1 1 80rem;
+  padding: 1.4rem;
+  border: none;
+  border-radius: 0 0 6rem 6rem;
+  background-color: var(--LightBlack);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.container .headerSection .boxWapper .navBar span {
+  font-family: "Baloo Bhaijaan 2", cursive;
+  font-weight: 700;
+  color: var(--bodyColor);
+  font-size: 2.4rem;
+  cursor: pointer;
+  padding: 0rem 1.7rem;
+  cursor: pointer;
+  position: relative;
+  margin: 0 1rem;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.container .headerSection .boxWapper .navBar span:hover::before {
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+
+.container .headerSection .boxWapper .navBar span::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: .3rem;
+  bottom: 0;
+  left: 0;
+  background: var(--blue);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.container .headerSection .boxWapper .navBar a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.container .headerSection .boxWapper .navBar a .fa-moon {
+  width: 3rem;
+  height: 3rem;
+  background: var(--bodyColor);
+  color: var(--black);
+  font-size: 2rem;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  border-radius: 50%;
+  line-height: 3rem;
+  display: block;
+}
+
+.container .headerSection .boxWapper .navBar a .fa-sun {
+  width: 3rem;
+  height: 3rem;
+  background: var(--black);
+  color: var(--bodyColor);
+  font-size: 2rem;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  border-radius: 50%;
+  line-height: 3rem;
+  display: none;
+}
+
+.container .headerSection .boxWapper .currentTime {
+  -webkit-box-flex: .8;
+      -ms-flex: .8 1 7rem;
+          flex: .8 1 7rem;
+  font-family: "Orbitron", sans-serif;
+  color: var(--bodyColor);
+  background: var(--LightBlack2);
+  padding: 1.3rem 3rem;
+  border: none;
+  text-align: center;
+  border-radius: 1rem;
+  margin-top: .5rem;
+  font-size: 2.2rem;
+}
+
+.container .ClockSections {
+  width: 80%;
+  height: 70vh;
+  border: none;
+  border-radius: 2rem;
+  -webkit-box-shadow: 0rem 0.5rem 1rem var(--boxShadow);
+          box-shadow: 0rem 0.5rem 1rem var(--boxShadow);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.container .ClockSections .stopWatchSection {
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2rem;
+  -webkit-transition: .4s ease-in;
+  transition: .4s ease-in;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}
+
+.container .ClockSections .stopWatchSection .StopWatchTimer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 92%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  background: var(--blue);
+  padding: 2rem 3%;
+  color: var(--bodyColor);
+  font-size: 2.5rem;
+  border-radius: 1.2rem;
+}
+
+.container .ClockSections .stopWatchSection .StopWatchTimer span {
+  color: var(--bodyColor);
+  font-size: 2.5rem;
+  font-family: "Orbitron", sans-serif;
+  border: none;
+}
+
+.container .ClockSections .stopWatchSection .boxWapper {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .ClockSections .stopWatchSection .boxWapper .btn {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 20rem;
+          flex: 1 1 20rem;
+}
+
+.container .ClockSections .stopWatchSection .boxWapper #StopWatchresetbtn {
+  opacity: .4;
+  pointer-events: none;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+
+.container .ClockSections .AlarmSection {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  border-radius: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2rem;
+  -webkit-transition: .4s ease-in;
+  transition: .4s ease-in;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transform: translateX(-100rem);
+          transform: translateX(-100rem);
+  -webkit-transform-origin: right;
+          transform-origin: right;
+  border-radius: 2rem;
+  transition: .4s ease-in;
+}
+
+.container .ClockSections .AlarmSection .AlramTimer {
+  width: 92%;
+  background: var(--blue);
+  padding: 2rem 3%;
+  color: var(--bodyColor);
+  font-size: 2.5rem;
+  border-radius: 1.2rem;
+  font-family: "Orbitron", sans-serif;
+  border: none;
+}
+
+.container .ClockSections .AlarmSection .boxWapper {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .ClockSections .AlarmSection .boxWapper .btn {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 30rem;
+          flex: 1 1 30rem;
+}
+
+.container .ClockSections .TimerSection {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateX(-100rem);
+          transform: translateX(-100rem);
+  -webkit-transform-origin: right;
+          transform-origin: right;
+  border-radius: 2rem;
+  -webkit-transition: .4s ease-in;
+  transition: .4s ease-in;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2rem;
+}
+
+.container .ClockSections .TimerSection .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .ClockSections .TimerSection .top .decbtn,
+.container .ClockSections .TimerSection .top .incbtn {
+  width: 5rem;
+  height: 5rem;
+  text-align: center;
+  border: 0.2rem solid var(--blue);
+  color: var(--blue);
+  font-size: 3rem;
+  font-family: "Orbitron", sans-serif;
+  background: transparent;
+  -webkit-transition: .4s ease;
+  transition: .4s ease;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.container .ClockSections .TimerSection .top .decbtn:hover,
+.container .ClockSections .TimerSection .top .incbtn:hover {
+  background: var(--blue);
+  color: var(--bodyColor);
+}
+
+.container .ClockSections .TimerSection .top .show {
+  color: var(--purpal);
+  font-family: "Orbitron", sans-serif;
+  font-size: 3rem;
+}
+
+.container .ClockSections .TimerSection .center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+  background: var(--blue);
+  font-size: 3rem;
+  color: var(--bodyColor);
+  font-family: "Orbitron", sans-serif;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 2rem 3%;
+}
+
+.container .ClockSections .TimerSection .bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+}
+
+.container .ClockSections .TimerSection .bottom .boxWapper {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .ClockSections .TimerSection .bottom .boxWapper .btn {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 20rem;
+          flex: 1 1 20rem;
+}
+
+@media (max-width: 1300px) {
+  html {
+    font-size: 58%;
+  }
+}
+
+@media (max-width: 988px) {
+  html {
+    font-size: 54%;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 49.5%;
+  }
+}
+
+@media (max-width: 500px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+@media (max-width: 440px) {
+  html {
+    font-size: 44%;
+  }
+  .navBar span {
+    padding: 1rem;
+    margin: 0 .5rem;
+  }
+}
+
+@media (max-width: 320px) {
+  html {
+    font-size: 42%;
+  }
+  .navBar span {
+    padding: .7rem;
+    margin: 0 .3rem;
+  }
+}
+/*# sourceMappingURL=style.css.map */
